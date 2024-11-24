@@ -12,10 +12,22 @@ const getAuthorizationHeader = () => {
   return { Authorization: `Bearer ${SAHHA_ACCOUNT_TOKEN}` };
 };
 
+// Enums for biomarker categories and types
+enum BiomarkerCategory {
+  Activity = 'activity',
+  Sleep = 'sleep',
+}
+
+enum BiomarkerType {
+  HeartRate = 'heart_rate',
+  Steps = 'steps',
+  Sleep = 'sleep',
+}
+
 export const getProfileBiomarkers = async (
   externalId: string,
-  categories: string[],
-  types: string[],
+  categories: BiomarkerCategory[],
+  types: BiomarkerType[],
   startDateTime: string,
   endDateTime: string
 ): Promise<any> => {
@@ -31,8 +43,8 @@ export const getProfileBiomarkers = async (
     const response = await axios.get(`${SAHHA_API_URL}/api/v1/profile/biomarker/${externalId}`, {
       headers: getAuthorizationHeader(),
       params: {
-        categories: categories.join(','), 
-        types: types.join(','), 
+        categories: categories.join(','),
+        types: types.join(','),
         startDateTime,
         endDateTime,
       },
@@ -48,7 +60,7 @@ export const getProfileBiomarkers = async (
 
 export const getProfileScores = async (
   externalId: string,
-  types: string[],
+  types: BiomarkerType[],
   startDateTime: string,
   endDateTime: string,
   version: number = 1
