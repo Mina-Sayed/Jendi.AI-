@@ -1,5 +1,3 @@
-
-
 # Sahha Profile Biomarker and Score API
 
 This project provides an API service to interact with the Sahha API for fetching profile biomarkers and scores using account authorization. The service allows users to retrieve biomarkers and scores for a given time window for a specific profile by providing the necessary parameters.
